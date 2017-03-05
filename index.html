@@ -35,18 +35,34 @@
 		projects.each(function(){
 			var thumbnail = $(this);
 			var iphone = $('.iphone', thumbnail);
+			var screens = $('.screen', thumbnail);
+			var screenTabs = $('.screen-tabs li', thumbnail);
 			var marginTop = (thumbnail.outerHeight()-iphone.height())/2;
 			iphone.css('opacity', 0).css('margin-left', maxiPhoneWidth/-2).css('top', marginTop);
 			$('video', iphone).css('width', maxiPhoneWidth*ratio);
 			dotNav.append("<li></li>").css("margin-top", dotNav.outerHeight()/-2);
-			// $("li:eq(0)", dotNav).addClass("active");
+			screens.css("opacity", 0);
+			screens.eq(0).css("opacity", 1);
+			screenTabs.each(function(index){
+				var myIndex = index;
+				$(this).on("click", function(){
+					screens.animate({
+						opacity: 0
+					}, 100, 'easeOutQuint');
+					screens.eq(myIndex).animate({
+						opacity: 1
+					}, 200, 'easeInQuint');
+					screenTabs.removeClass("active");
+					$(this).addClass("active");
+				});
+			});
 		});
 
 		$('#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2').css('opacity', 0);
-		$("html, body").animate({ scrollTop: 0 }, 300, 'easeOutQuart');
-		$("#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2").delay(250).css('opacity', 0).animate({
+		$("html, body").delay(500).animate({ scrollTop: 0 }, 250, 'easeOutQuart');
+		$("#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2").delay(750).css('opacity', 0).animate({
 			opacity: 1
-		});
+		}, 1000, 'easeOutCubic');
 
 		setTimeout(function () {
 			watchScroll();
@@ -147,8 +163,6 @@
 	function watchScroll() {
 		$(window).scroll(function(){
 
-			console.log($(document).outerHeight());
-
 			var height = $(window).height();
 			var scrollTop = $(window).scrollTop();
 			var heroTop = convertValue(scrollTop, 40, 280, 0, 100);
@@ -165,7 +179,7 @@
 				var iphone = $('.iphone', thumbnail);
 				var img = $('img', iphone);
 				var detail = $('.project-detail', thumbnail);
-				var video = $('video', iphone);
+				var video = $('.screen', iphone);
 				var distanceMin = thumbnail.offset().top-projects.eq(0).offset().top;
 				var distanceMax = thumbnail.offset().top-40;
 				var iphoneLeft = convertValue(scrollTop, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
@@ -290,9 +304,11 @@
 		<div class="iphone">
 			<div class="frame">
 				<img src="./images/iphone_frame-white@2x.png" alt="" />
-				<video autoplay="autoplay" loop="loop">
+				<video class="screen" autoplay="autoplay" loop="loop">
 					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
 				</video>
+				<img class="screen" src="./images/thumb_archetype02@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_archetype03@2x.png" alt="" />
 			</div>
 		</div>
 		<div class="row">
@@ -320,10 +336,10 @@
 	<div class="thumbnail rise">
 		<div class="iphone">
 			<div class="frame">
-				<img src="./images/iphone_frame-white@2x.png" alt="" />
-				<video autoplay="autoplay" loop="loop">
-					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
-				</video>
+				<img src="./images/iphone_frame-black@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_rise01@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_rise02@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_rise03@2x.png" alt="" />
 			</div>
 		</div>
 		<div class="row">
@@ -352,8 +368,9 @@
 		<div class="iphone">
 			<div class="frame">
 				<img src="./images/iphone_frame-white@2x.png" alt="" />
-				<video autoplay="autoplay" loop="loop">
-					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				<img class="screen" src="./images/thumb_pictour01@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_pictour02@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_pictour03@2x.png" alt="" />
 				</video>
 			</div>
 		</div>
@@ -382,9 +399,10 @@
 	<div class="thumbnail messaging">
 		<div class="iphone">
 			<div class="frame">
-				<img src="./images/iphone_frame-white@2x.png" alt="" />
-				<video autoplay="autoplay" loop="loop">
-					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				<img src="./images/iphone_frame-black@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_chat01@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_chat02@2x.png" alt="" />
+				<img class="screen" src="./images/thumb_chat03@2x.png" alt="" />
 				</video>
 			</div>
 		</div>

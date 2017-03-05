@@ -361,7 +361,7 @@ a:hover{
 
 .thumbnail .screen-tabs li{
 	padding: 14px 0;
-	border-top: 2px solid rgba(255,255,255,.2);
+	border-top: 2px solid rgba(255,255,255,.1);
 	color: rgba(255,255,255,.5);
 	cursor: pointer;
 	transition: color .3s ease, text-indent .3s ease;
@@ -418,7 +418,7 @@ a:hover{
 	width: 100%;
 }
 
-.thumbnail .iphone .frame video{
+.thumbnail .iphone .frame .screen{
 	position: absolute;
 	z-index: 5;
 	height: inherit;
