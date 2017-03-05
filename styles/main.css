@@ -325,6 +325,7 @@ a:hover{
 	margin: 0 0 30px;
 	font-size: 16px;
 	font-weight: 700;
+	height: 24px;
 }
 
 .thumbnail .competency li{
@@ -341,17 +342,19 @@ a:hover{
 }
 
 .thumbnail p{
-	font-size: 24px;
+	font-size: 1.6vw;
+	line-height: 1.3em;
 	margin: 0 0 50px;
 	padding: 0 30% 0 0;
 	letter-spacing: 0.4px;
 }
 
 .thumbnail .screen-tabs{
-	font-size: 23px;
+	font-size: 1.6vw;
+	line-height: 1.3em;
 	list-style: none;
 	border-bottom: 2px solid rgba(255,255,255,.2);
-	margin: 0 25% 0 0;
+	margin: 0 15% 0 0;
 	padding: 0;
 	letter-spacing: 0.4px;
 }
@@ -363,6 +366,8 @@ a:hover{
 	cursor: pointer;
 	transition: color .3s ease, text-indent .3s ease;
 	text-indent: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .thumbnail .screen-tabs li:hover{
