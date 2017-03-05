@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles/foundation.css" />
+<link rel="stylesheet" href="styles/jquery.bxslider.css" />
+<link rel="stylesheet" href="styles/main.css" />
+<script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+
+	var sections;
+
+	var maxiPhoneWidth = 645;
+	var miniPhoneWidth = 445;
+	var ratio = 0.58139;
+
+	function convertValue(value, r1Min, r1Max, r2Min, r2Max) {
+    	var ratio = (r2Max - r2Min) / (r1Max - r1Min)
+    	return value * ratio + r2Min - r1Min * ratio
+	}
+
+	$(document).ready(function(){
+
+		$('.thumbnail').each(function(){
+			var thumbnail = $(this);
+			var iphone = $('.iphone', thumbnail);
+			var marginTop = (thumbnail.outerHeight()-iphone.height())/2;
+			iphone.css('opacity', 0).css('margin-left', maxiPhoneWidth/-2).css('top', marginTop);
+			$('video', iphone).css('width', maxiPhoneWidth*ratio);
+		});
+
+		$('#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2').css('opacity', 0);
+		$("html, body").animate({ scrollTop: 0 }, 300);
+		$("#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2").delay(250).css('opacity', 0).animate({
+			opacity: 1
+		});
+
+		setTimeout(function () {
+			watchScroll()
+		}, 750);
+
+		sections = $('.section');
+
+		$('#header .nav a').click(function(e){
+			e.preventDefault()
+			var myIndex = $(this).index('.nav a');
+			var headerHeight = $("#header").outerHeight()+20;
+			var myOffset = sections.eq(myIndex+1).offset().top-headerHeight;
+			$('html, body').animate({
+				scrollTop: myOffset
+			}, 1000);
+		});
+
+		$('#header2 .nav a').click(function(e){
+			e.preventDefault()
+			var myIndex = $(this).index('#header2 .nav a');
+			var headerHeight = $("#header").outerHeight()+20;
+			var myOffset = sections.eq(myIndex+1).offset().top-headerHeight;
+			$('html, body').animate({
+				scrollTop: myOffset
+			}, 1000);
+		});
+
+		$('a.messageCTA').click(function(e){
+			e.preventDefault();
+			$( "#header .nav a:eq(2)").trigger( "click" );
+		});
+
+		$('a.workCTA').click(function(e){
+			e.preventDefault();
+			$( "#header .nav a:eq(0)").trigger( "click" );
+		})
+
+		/*$("#work").addClass('bx-wrapper');
+		$('.bx-pager.bx-default-pager').eq(0).prependTo("#work .large-10:eq(0)");*/
+
+		$("#contactform").submit( function(e){
+			
+			e.preventDefault();
+
+			console.log("submitting");
+
+			var action = $(this).attr('action');
+			
+			$('#submit').attr('disabled','disabled').after('<img src="./images/ajax-loader.gif" class="loader" />');
+			
+			$.post(action, { 
+				name: $('#name').val(),
+				email: $('#email').val(),
+				message: $('#message').val()
+			},
+				function(data){
+					$('#notice').html(data);
+					$('#contactform img.loader').fadeOut('fast',function(){$(this).remove()});
+					$('#submit').removeAttr('disabled'); 
+					if(data.match('Success! Message sent.') != null) {
+						$('#contact .close').trigger('click');
+					}
+				}
+			);
+			
+			return false; 
+		
+		});
+
+		$('.pictour').click(function(e){
+			e.preventDefault();
+			$("#video-overlay").fadeIn(600);
+		});
+
+		$("#video-overlay .close").click(function(e){
+			e.preventDefault();
+			$("#video-overlay").fadeOut(600);
+		});
+
+
+	});
+
+	function updateSlides() {
+		var current = slider.getCurrentSlide();
+    	//console.log('before slide'+current);
+    	//$("#work h2").html(titles[current]);
+    	//$("#work p").html(descriptions[current]);
+	}
+
+	function watchScroll() {
+		$(window).scroll(function(){
+
+			var height = $(window).height();
+			var scrollTop = $(window).scrollTop();
+			var heroTop = convertValue(scrollTop, 40, 330, 0, 100);
+			var heroAlpha = convertValue(scrollTop, 40, 300, 1, 0);
+			var headerAlpha = convertValue(scrollTop, 290, 340, 0, 1);
+			var header2Top = convertValue(scrollTop, 0, 50, 0, 30);
+
+			$('#header').css('opacity', headerAlpha);
+			$('#hero').css('opacity', heroAlpha).css('top', heroTop);
+			$('#header2').css('top', header2Top);
+
+			$('.thumbnail').each(function(){
+				var thumbnail = $(this);
+				var iphone = $('.iphone', thumbnail);
+				var img = $('img', iphone);
+				var detail = $('.project-detail', thumbnail);
+				var video = $('video', iphone);
+				var distanceMin = thumbnail.offset().top-$('.thumbnail').eq(0).offset().top;
+				var distanceMax = thumbnail.offset().top-100;
+				var iphoneLeft = convertValue(scrollTop, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
+				var iPhoneWidth = convertValue(scrollTop, distanceMin, distanceMax, maxiPhoneWidth, miniPhoneWidth);
+				var iPhoneOpacity = convertValue(scrollTop, distanceMin, distanceMin+100, 0, 1);
+				var contentOpacity =  convertValue(scrollTop, distanceMin+150, distanceMax-75, 0, 1);
+				if (scrollTop <= distanceMax && scrollTop >= distanceMin){
+					img.css('width', iPhoneWidth);
+				} else {
+					if (scrollTop > distanceMax) {
+						img.css('width', miniPhoneWidth);
+						iphoneLeft = convertValue(distanceMax, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
+						iPhoneWidth = convertValue(distanceMax, distanceMin, distanceMax, maxiPhoneWidth, miniPhoneWidth);
+					} else {
+						img.css('width', maxiPhoneWidth);
+						iphoneLeft = convertValue(distanceMin, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
+						iPhoneWidth = convertValue(distanceMin, distanceMin, distanceMax, maxiPhoneWidth, miniPhoneWidth);
+					}
+				}
+				var marginTop = (thumbnail.outerHeight()-iphone.height())/2;
+				iphone.css('opacity', iPhoneOpacity).css('margin-left', (iPhoneWidth/-2)-iphoneLeft).css('top', marginTop);
+				video.css('width', iPhoneWidth*ratio);
+				detail.css('opacity', contentOpacity);
+			});
+
+			checkSection();
+		});
+	}
+
+	function checkSection() {
+		for(i=1;i<sections.length;i++){
+			var sectionTop = $(sections[i]).offset().top-240;
+			var currentTop = $(document).scrollTop();
+			if (currentTop > sectionTop) {
+				$("#header .nav li").removeClass("active");
+				$("#header .nav li").eq(i-1).addClass("active");
+			}
+		}
+	}
+
+</script>
+<title>Dairien Boyd</title>
+</head>
+
+<body>
+
+<div class="row" id="header">
+	<div class="large-4 medium-4 columns nav">
+		<ul>
+			<li class="active"><a href="#">Work</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</div>
+	<div class="large-4 medium-4 columns logo">
+		<img src="./images/logo.png" alt="" width="32" height="" />
+	</div>
+	<div class="large-4 medium-4 columns social">
+		<ul>
+			<li><a href="http://dribbble.com/dairien" target="_blank"><img src="./images/icon_dribbble.png" alt="" width="32" height="" /></a></li>
+			<li><a href="http://github.com/dairien" target="_blank"><img src="./images/icon_github.png" alt="" width="32" height="" /></a></li>
+			<li><a href="http://linkedin.com/in/dairien" target="_blank"><img src="./images/icon_linkedin.png" alt="" width="32" height="" /></a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="row section" id="header2">
+	<div class="large-4 medium-4 columns nav">
+		<ul>
+			<li><a href="#">Work</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</div>
+	<div class="large-4 medium-4 columns logo"></div>
+	<div class="large-4 medium-4 columns social">
+		<ul>
+			<li><a href="#"><img src="./images/icon_dribbble.png" alt="" width="32" height="" /></a></li>
+			<li><a href="#"><img src="./images/icon_github.png" alt="" width="32" height="" /></a></li>
+			<li><a href="#"><img src="./images/icon_linkedin.png" alt="" width="32" height="" /></a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="row" id="hero">
+	<div class="large-12 columns">
+		<img src="./images/logo.png" alt="" width="32" height="" />
+    	<h1>Hi! I'm Dairien.</h1>
+    	<p>I create experiences for desktop and mobile applications. <br/>Designing and engineering products at One Medical.</p>
+    	<p>Get in touch, <a class="messageCTA" href="#">send a message</a>.</p>
+    	<hr/>
+    	<a href="#" class="workCTA">See My Work</a>
+	</div>
+</div>
+
+<div id="work" class="section">
+
+	<div class="thumbnail archetype">
+		<div class="iphone">
+			<div class="frame">
+				<img src="./images/iphone_frame-white@2x.png" alt="" />
+				<video autoplay="autoplay" loop="loop">
+					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 medium-6 columns">&nbsp;</div>
+			<div class="large-5 medium-5 columns project-detail">
+				<h3>Archetype</h3>
+				<ul class="competency">
+					<li>iOS</li>
+					<li>Design</li>
+					<li>Code</li>
+					<li>Interaction</li>
+					<li>Animation</li>
+				</ul>
+				<p>Archetype is an application that allows designers to complete an assessment and plot their skills on a radar graph.</p>
+				<ul class="screen-tabs">
+					<li class="active">Launch screen and create account</li>
+					<li>Select an avatar photo</li>
+					<li>Navigate from report to settings</li>
+				</ul>
+			</div>
+			<div class="large-1 medium-1 columns">&nbsp;</div>
+		</div>
+	</div> <!-- end archetype thumbnail -->
+
+	<div class="thumbnail rise">
+		<div class="iphone">
+			<div class="frame">
+				<img src="./images/iphone_frame-white@2x.png" alt="" />
+				<video autoplay="autoplay" loop="loop">
+					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 medium-6 columns">&nbsp;</div>
+			<div class="large-5 medium-5 columns project-detail">
+				<h3>Rise</h3>
+				<ul class="competency">
+					<li>iOS</li>
+					<li>Design</li>
+					<li>Code</li>
+					<li>Interaction</li>
+					<li>Animation</li>
+				</ul>
+				<p>Archetype is an application that allows designers to complete an assessment and plot their skills on a radar graph.</p>
+				<ul class="screen-tabs">
+					<li class="active">Launch screen and create account</li>
+					<li>Select an avatar photo</li>
+					<li>Navigate from report to settings</li>
+				</ul>
+			</div>
+			<div class="large-1 medium-1 columns">&nbsp;</div>
+		</div>
+	</div> <!-- end rise thumbnail -->
+
+	<div class="thumbnail pictour">
+		<div class="iphone">
+			<div class="frame">
+				<img src="./images/iphone_frame-white@2x.png" alt="" />
+				<video autoplay="autoplay" loop="loop">
+					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 medium-6 columns">&nbsp;</div>
+			<div class="large-5 medium-5 columns project-detail">
+				<h3>Pictour</h3>
+				<ul class="competency">
+					<li>iOS</li>
+					<li>Design</li>
+					<li>Code</li>
+					<li>Interaction</li>
+					<li>Animation</li>
+				</ul>
+				<p>Archetype is an application that allows designers to complete an assessment and plot their skills on a radar graph.</p>
+				<ul class="screen-tabs">
+					<li class="active">Launch screen and create account</li>
+					<li>Select an avatar photo</li>
+					<li>Navigate from report to settings</li>
+				</ul>
+			</div>
+			<div class="large-1 medium-1 columns">&nbsp;</div>
+		</div>
+	</div> <!-- end pictour thumbnail -->
+
+	<div class="thumbnail messaging">
+		<div class="iphone">
+			<div class="frame">
+				<img src="./images/iphone_frame-white@2x.png" alt="" />
+				<video autoplay="autoplay" loop="loop">
+					<source src="assets/archetype-intro-full.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 medium-6 columns">&nbsp;</div>
+			<div class="large-5 medium-5 columns project-detail">
+				<h3>Chat App</h3>
+				<ul class="competency">
+					<li>iOS</li>
+					<li>Design</li>
+					<li>Code</li>
+					<li>Interaction</li>
+					<li>Animation</li>
+				</ul>
+				<p>Archetype is an application that allows designers to complete an assessment and plot their skills on a radar graph.</p>
+				<ul class="screen-tabs">
+					<li class="active">Launch screen and create account</li>
+					<li>Select an avatar photo</li>
+					<li>Navigate from report to settings</li>
+				</ul>
+			</div>
+			<div class="large-1 medium-1 columns">&nbsp;</div>
+		</div>
+	</div> <!-- end messaging thumbnail -->
+
+</div>
+
+<div class="row section" id="about">
+    <div class="large-1 medium-1 columns"></div>
+    <div class="large-10 medium-10 columns">
+		<h2>Who Am I?</h2>
+		<p>I currently help build products at team <a href="#">@rise</a>, previously <a href="#">@groupon</a> &amp; <a href="#">@dtelepathy</a>. Straight outta San Francisco with my dog Bandit. My focus is primarily on emerging platforms and technlogoies. I am a full-stack designer with the ability to execute on a project from inception through completion.</p>
+    </div>
+    <div class="large-1 medium-1 columns"></div>
+</div>
+
+<div id="light-blue">
+
+	<div class="row" id="qualities">
+		<div class="large-1 medium-1 columns"></div>
+		<div class="large-2 medium-2 columns">
+			<span>
+				<img src="./images/icon_screen.png" alt="" width="27" height="" />
+				<label>Ideator</label>
+			</span>
+		</div>
+		<div class="large-2 medium-2 columns">
+			<span>
+				<img src="./images/icon_screen.png" alt="" width="27" height="" />
+				<label>Prototyper</label>
+			</span>
+		</div>
+		<div class="large-2 medium-2 columns">
+			<span>
+				<img src="./images/icon_screen.png" alt="" width="27" height="" />
+				<label>Designer</label>
+			</span>
+		</div>
+		<div class="large-2 medium-2 columns">
+			<span>
+				<img src="./images/icon_screen.png" alt="" width="27" height="" />
+				<label>Developer</label>
+			</span>
+		</div>
+		<div class="large-2 medium-2 columns">
+			<span>
+				<img src="./images/icon_screen.png" alt="" width="27" height="" />
+				<label>Animator</label>
+			</span>
+		</div>
+		<div class="large-1 medium-1 columns"></div>
+	</div>
+
+	<div class="row" id="desdev">
+		<div class="large-5 medium-5 columns">
+			<h2>Design</h2>
+			<p>Design is represented by much more than what is visible on the surface. My passion lies in crafting each detail of an experience for it’s viewer. Product design provides me with a great balance of data-informed decision-making and creativity.</p>
+		</div>
+		<div class="large-2 medium-2 columns"></div>
+		<div class="large-5 medium-5 columns">
+			<h2>Development</h2>
+			<p>I’ve always maintained a strong inclination to code the experiences that I design. Through formal education and extensive practice, I have become fluent developing for both desktop and mobile devices. Swift (iOS), JavaScript, PHP, HTML, CSS, etc.</p>
+		</div>
+	</div>
+
+</div>
+
+<div id="dark-blue">
+
+	<div class="row section" id="contact">
+		<div class="large-4 medium-4 columns">
+			<h2>Send Me a Message</h2>
+			<p>I’m always available to chat. Whether you want to talk shop or just say hello, drop me a line.<p>
+			<p class="twitter"><img src="./images/icon_twitter.png" alt="" width="24" height="auto" /> You can also DM me <a href="http://twitter.com/dairien" target="_blank">@dairien</a></p>
+		</div>
+		<div class="large-1 medium-1 columns"></div>
+		<div class="large-7 medium-7 columns">
+			<form id="contactform" action="contact.php" method="post">
+				<div class="row">
+					<div class="large-6 medium-6 columns">
+						<label>Name*</label>
+						<input id="name" type="text" />
+					</div>
+					<div class="large-6 medium-6 columns">
+						<label></label>
+						<input id="lname" type="text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 medium-12 columns">
+						<label>Email*</label>
+						<input id="email" type="text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 medium-12 columns">
+						<label>Subject*</label>
+						<input type="text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 medium-12 columns">
+						<label>Message*</label>
+						<textarea id="message"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-6 medium-6 columns">
+						<input type="submit" value="SUBMIT" />
+					</div>
+					<div class="large-6 medium-6 columns">
+						<div id="notice"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row sub" id="footer">
+		<div class="large-6 medium-6 columns">
+			<p>&copy; MADE BY DAIRIEN</p>
+		</div>
+		<div class="large-6 medium-6 columns right">
+			<p>
+				<a href="http://dribbble.com/dairien" target="_blank">Dribbble</a> &bull; 
+				<a href="http://github.com/dairien" target="_blank">Github</a> &bull; 
+				<a href="http://linkedin.com/in/dairien" target="_blank">LinkedIn</a> &bull; 
+				<a href="mailto:contact@dairien.com" target="_blank">Email</a>
+			</p>
+		</div>
+	</div>
+
+</div>
+
+<div id="video-overlay">
+
+	<a href="#" class="close"><img src="./images/icon-close-ex@2x.png" alt="" height="auto" width="48" /></a>
+	<video width="auto" height="80%" controls>
+		<source src="./assets/pictour-demo-compressed.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+</div>
+
+</body>
+
+</html>
