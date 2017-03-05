@@ -47,7 +47,7 @@ body {
 
 h1{
 	font-size: 56px;
-	color: #000;
+	color: #20262f;
 	margin-top: 1em;
 	margin-bottom: 0;
 	font-weight: 500;
@@ -55,7 +55,7 @@ h1{
 
 h2{
 	font-size: 44px;
-	color: #000;
+	color: #20262f;
 	margin-bottom: 0;
 }
 
@@ -108,6 +108,43 @@ a:hover{
 	max-width: inherit;
 	position: relative;
 	z-index: 2;
+}
+
+#dotNav{
+	display: block;
+	position: fixed;
+	list-style: none;
+	width: 24px;
+	right: 60px;
+	top: 50%;
+	margin: 0;
+	padding: 10px 0 0;
+	z-index: 10;
+	overflow: visible;
+}
+
+#dotNav li{
+	display: block;
+	list-style: none;
+	background: transparent;
+	height: 24px;
+	width: 24px;
+	border-radius: 24px;
+	margin: 0 0 14px;
+	padding: 0;
+	border: 2px solid #fff;
+	opacity: 0.66;
+	cursor: pointer;
+	transition: opacity .3s ease;
+}
+
+#dotNav li:hover{
+	opacity: 1;
+}
+
+#dotNav li.active{
+	background: #fff;
+	opacity: 1;
 }
 
 #header .logo{
@@ -197,7 +234,7 @@ a:hover{
 #hero .workCTA{
 	display: inline-block;
 	width: auto;
-	background-color: #000000/*#414446*/;
+	background-color: #20262f/*#414446*/;
 	color: #fff;
 	font-size: 21px;
 	line-height: inherit;
@@ -398,6 +435,19 @@ a:hover{
 
 .thumbnail .project-detail{
 	opacity: 0;
+}
+
+.thumbnail a.down,
+.thumbnail a.down:link,
+.thumbnail a.down:visited,
+.thumbnail a.down:hover{
+	display: block;
+	position: absolute;
+	width: 71px;
+	height: 49px;
+	bottom: 40px;
+	right: 50%;
+	margin-left: -35.5px;
 }
 
 #slider .bx-wrapper .bx-viewport {

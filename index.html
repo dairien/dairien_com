@@ -7,9 +7,13 @@
 <link rel="stylesheet" href="styles/main.css" />
 <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.easing.1.3.js"></script>
 <script type="text/javascript">
 
 	var sections;
+	var projects;
+	var dotNav;
+	var header2;
 
 	var maxiPhoneWidth = 645;
 	var miniPhoneWidth = 445;
@@ -22,69 +26,92 @@
 
 	$(document).ready(function(){
 
-		$('.thumbnail').each(function(){
+		sections = $('.section');
+		projects = $('.thumbnail');
+		dotNav = $('#dotNav');
+		header = $('#header');
+		header2 = $('#header2');
+
+		projects.each(function(){
 			var thumbnail = $(this);
 			var iphone = $('.iphone', thumbnail);
 			var marginTop = (thumbnail.outerHeight()-iphone.height())/2;
 			iphone.css('opacity', 0).css('margin-left', maxiPhoneWidth/-2).css('top', marginTop);
 			$('video', iphone).css('width', maxiPhoneWidth*ratio);
+			dotNav.append("<li></li>").css("margin-top", dotNav.outerHeight()/-2);
+			// $("li:eq(0)", dotNav).addClass("active");
 		});
 
 		$('#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2').css('opacity', 0);
-		$("html, body").animate({ scrollTop: 0 }, 300);
+		$("html, body").animate({ scrollTop: 0 }, 300, 'easeOutQuart');
 		$("#hero, #work, #slider, #about, #light-blue, #dark-blue, #header2").delay(250).css('opacity', 0).animate({
 			opacity: 1
 		});
 
 		setTimeout(function () {
-			watchScroll()
+			watchScroll();
 		}, 750);
 
-		sections = $('.section');
+		/*
+		This will completely disable scrolling:
 
-		$('#header .nav a').click(function(e){
+		$('html, body').css({
+			overflow: 'hidden',
+			height: '100%'
+		});
+		To restore:
+
+		$('html, body').css({
+			overflow: 'auto',
+			height: 'auto'
+		});
+		*/
+
+		$('.nav a').on("click", function(e){
 			e.preventDefault()
-			var myIndex = $(this).index('.nav a');
-			var headerHeight = $("#header").outerHeight()+20;
+			var ul = $(this).parent().parent();
+			var myIndex = $(this).index('.nav a', ul);
+			var headerHeight = header.outerHeight()/2;
 			var myOffset = sections.eq(myIndex+1).offset().top-headerHeight;
-			$('html, body').animate({
+			var centeredOffset = projects.eq(0).offset().top-headerHeight;
+			var pageBottom = $(document).outerHeight()-$(window).height();
+			centeredOffset -= ($(window).height() - projects.eq(0).outerHeight())/2;
+			if (myIndex == 0){
+				myOffset = centeredOffset;
+			} else if (myOffset > pageBottom){
+				myOffset = pageBottom;
+			}
+			$('html, body').stop(true, true).animate({
 				scrollTop: myOffset
-			}, 1000);
+			}, 2000, 'easeOutQuart');
 		});
 
-		$('#header2 .nav a').click(function(e){
+		$('li', dotNav).on("click", function(e){
 			e.preventDefault()
-			var myIndex = $(this).index('#header2 .nav a');
-			var headerHeight = $("#header").outerHeight()+20;
-			var myOffset = sections.eq(myIndex+1).offset().top-headerHeight;
-			$('html, body').animate({
-				scrollTop: myOffset
-			}, 1000);
+			var myIndex = $(this).index('#dotNav li');
+			var headerHeight = header.outerHeight()/2;
+			var centeredOffset = projects.eq(myIndex).offset().top-headerHeight;
+			centeredOffset -= ($(window).height() - projects.eq(myIndex).outerHeight())/2;
+			$('html, body').stop(true, true).animate({
+				scrollTop: centeredOffset
+			}, 2000, 'easeOutQuart');
 		});
 
-		$('a.messageCTA').click(function(e){
+		$('a.messageCTA').on("click", function(e){
 			e.preventDefault();
-			$( "#header .nav a:eq(2)").trigger( "click" );
+			$(".nav a:eq(2)", header).trigger( "click" );
 		});
 
-		$('a.workCTA').click(function(e){
+		$('a.workCTA').on("click", function(e){
 			e.preventDefault();
-			$( "#header .nav a:eq(0)").trigger( "click" );
-		})
+			$("li:eq(0)", dotNav).trigger( "click" );
+		});
 
-		/*$("#work").addClass('bx-wrapper');
-		$('.bx-pager.bx-default-pager').eq(0).prependTo("#work .large-10:eq(0)");*/
-
-		$("#contactform").submit( function(e){
+		$("#contactform").on("submit", function(e){
 			
 			e.preventDefault();
-
-			console.log("submitting");
-
 			var action = $(this).attr('action');
-			
 			$('#submit').attr('disabled','disabled').after('<img src="./images/ajax-loader.gif" class="loader" />');
-			
 			$.post(action, { 
 				name: $('#name').val(),
 				email: $('#email').val(),
@@ -104,12 +131,12 @@
 		
 		});
 
-		$('.pictour').click(function(e){
+		$('.pictour').on("click", function(e){
 			e.preventDefault();
 			$("#video-overlay").fadeIn(600);
 		});
 
-		$("#video-overlay .close").click(function(e){
+		$("#video-overlay .close").on("click", function(e){
 			e.preventDefault();
 			$("#video-overlay").fadeOut(600);
 		});
@@ -117,38 +144,33 @@
 
 	});
 
-	function updateSlides() {
-		var current = slider.getCurrentSlide();
-    	//console.log('before slide'+current);
-    	//$("#work h2").html(titles[current]);
-    	//$("#work p").html(descriptions[current]);
-	}
-
 	function watchScroll() {
 		$(window).scroll(function(){
 
+			console.log($(document).outerHeight());
+
 			var height = $(window).height();
 			var scrollTop = $(window).scrollTop();
-			var heroTop = convertValue(scrollTop, 40, 330, 0, 100);
-			var heroAlpha = convertValue(scrollTop, 40, 300, 1, 0);
+			var heroTop = convertValue(scrollTop, 40, 280, 0, 100);
+			var heroAlpha = convertValue(scrollTop, 40, 340, 1, 0);
 			var headerAlpha = convertValue(scrollTop, 290, 340, 0, 1);
 			var header2Top = convertValue(scrollTop, 0, 50, 0, 30);
 
-			$('#header').css('opacity', headerAlpha);
+			header.css('opacity', headerAlpha);
+			header2.css('top', header2Top);
 			$('#hero').css('opacity', heroAlpha).css('top', heroTop);
-			$('#header2').css('top', header2Top);
 
-			$('.thumbnail').each(function(){
+			projects.each(function(){
 				var thumbnail = $(this);
 				var iphone = $('.iphone', thumbnail);
 				var img = $('img', iphone);
 				var detail = $('.project-detail', thumbnail);
 				var video = $('video', iphone);
-				var distanceMin = thumbnail.offset().top-$('.thumbnail').eq(0).offset().top;
-				var distanceMax = thumbnail.offset().top-100;
+				var distanceMin = thumbnail.offset().top-projects.eq(0).offset().top;
+				var distanceMax = thumbnail.offset().top-40;
 				var iphoneLeft = convertValue(scrollTop, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
 				var iPhoneWidth = convertValue(scrollTop, distanceMin, distanceMax, maxiPhoneWidth, miniPhoneWidth);
-				var iPhoneOpacity = convertValue(scrollTop, distanceMin, distanceMin+100, 0, 1);
+				var iPhoneOpacity = convertValue(scrollTop, distanceMin+100, distanceMin+300, 0, 1);
 				var contentOpacity =  convertValue(scrollTop, distanceMin+150, distanceMax-75, 0, 1);
 				if (scrollTop <= distanceMax && scrollTop >= distanceMin){
 					img.css('width', iPhoneWidth);
@@ -170,16 +192,37 @@
 			});
 
 			checkSection();
+			checkProject();
 		});
 	}
 
 	function checkSection() {
 		for(i=1;i<sections.length;i++){
-			var sectionTop = $(sections[i]).offset().top-240;
+			var sectionTop = sections.eq(i).offset().top-240;
 			var currentTop = $(document).scrollTop();
+			var pageBottom = $(document).outerHeight()-$(window).height();
 			if (currentTop > sectionTop) {
-				$("#header .nav li").removeClass("active");
-				$("#header .nav li").eq(i-1).addClass("active");
+				$(".nav li", header).removeClass("active");
+				$(".nav li", header).eq(i-1).addClass("active");
+			} else if (currentTop == pageBottom) {
+				$(".nav li", header).removeClass("active");
+				$(".nav li", header).eq(sections.length-2).addClass("active");
+			}
+		}
+	}
+
+	function checkProject() {
+		for(i=0;i<projects.length;i++){
+			var projectTop = projects.eq(i).offset().top-400;
+			var currentTop = $(document).scrollTop();
+			if (currentTop > projectTop) {
+				$("li", dotNav).removeClass("active");
+				$("li", dotNav).eq(i).addClass("active");
+			}
+			if (currentTop > sections.eq(2).offset().top-300){
+				if (dotNav.is(":visible")){ dotNav.hide() }
+			} else {
+				if(!dotNav.is(":visible")) { dotNav.show() }
 			}
 		}
 	}
@@ -227,6 +270,8 @@
 		</ul>
 	</div>
 </div>
+
+<ul id="dotNav"></ul>
 
 <div class="row" id="hero">
 	<div class="large-12 columns">
