@@ -264,37 +264,6 @@ a:hover{
 	max-width: inherit;
 }
 
-#work h2{
-	margin-top: 10px;
-}
-
-#work h2 .tag{
-	font-size: 11px;
-	border: 1px solid #000;
-	border-radius: 3px;
-	letter-spacing: 1px;
-	padding: 2px 6px 2px 8px;
-	vertical-align: super;
-}
-
-#work .large-1 img{
-	display: block;
-	position: relative;
-	top: 64px;
-	left: 0;
-	cursor: pointer;
-}
-
-#work .large-1 img.arrow-right{
-	left: inherit;
-	right: -32px;
-}
-
-#work .large-10 {
-	padding-left: 5%;
-	padding-right: 5%;
-}
-
 .thumbnail{
 	position: relative;
 	width: 100%;
@@ -381,6 +350,11 @@ a:hover{
 	color: rgba(255,255,255,1);
 	background: transparent url('../images/icon_arrow-right@2x.png') 20px center no-repeat;
 	background-size: 12px 17px;
+}
+
+.thumbnail .screen-tabs li.image.active{
+	background: transparent url('../images/icon_photo@2x.png') 15px center no-repeat;
+	background-size: 19px 16px;
 }
 
 @media 
