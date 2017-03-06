@@ -256,7 +256,7 @@ a:hover{
 }
 
 #work{
-	min-width: 960px;
+	/*min-width: 960px;*/
 	margin: 0 20px 1% 20px;
 }
 
@@ -587,6 +587,11 @@ a:hover{
 	margin-bottom: 3%;
 }
 
+#contact .row{
+	margin-left: 0;
+	margin-right: 0;
+}
+
 #contact input,
 #contact textarea{
 	display: block;
@@ -862,8 +867,49 @@ a:hover{
 	}
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+	.logo{ /* Have two separate sprite files, resize background to half of the size */
+		background-image: url(assets/sprite@2x.png);
+		background-size: 500px 500px;
+	}  
+}
 
+@media screen and (max-width: 1024px) {
+	.thumbnail{
+		padding: 800px 20% 10% 20%;
+	}
+	.thumbnail p{
+		font-size: 2.5vw;
+		padding-right: 0;
+	}
 
+	.thumbnail .screen-tabs{
+		font-size: 2.5vw;
+		margin-right: 0;
+	}
+
+}
+
+@media screen and (max-width: 640px) {
+	#work .thumbnail{
+		padding: 800px 7% 10% 7%;
+	}
+	#work .thumbnail p{
+		font-size: 3.5vw;
+		padding-right: 0;
+	}
+	#work .thumbnail .screen-tabs{
+		font-size: 3.5vw;
+		margin-right: 0;
+	}
+	#work .thumbnail h3{
+		font-size: 8vw;
+	}
+	#work .thumbnail ul.competency{
+		font-size: 2.5vw;
+		height: 2.9vw;
+	}
+}
 
 
 
