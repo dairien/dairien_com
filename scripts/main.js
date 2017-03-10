@@ -80,9 +80,12 @@ $(document).ready(function(){
 		var centeredOffset = projects.eq(0).offset().top-headerHeight;
 		var pageBottom = $(document).outerHeight()-$(window).height();
 		centeredOffset -= ($(window).height() - projects.eq(0).outerHeight())/2;
+		console.log(myIndex);
 		if (myIndex == 0){
 			myOffset = centeredOffset;
+			console.log("page top");
 		} else if (myOffset > pageBottom){
+			console.log("page bottom");
 			myOffset = pageBottom;
 		}
 		$('html, body').stop(true, true).animate({
@@ -101,7 +104,7 @@ $(document).ready(function(){
 		}, 2000, 'easeOutQuart');
 	});
 
-	$('a.messageCTA').on("click", function(e){
+	$('a.messageCTA, p.big a').on("click", function(e){
 		e.preventDefault();
 		$(".nav a:eq(2)", header).trigger( "click" );
 	});
@@ -153,14 +156,15 @@ function watchScroll() {
 
 		var height = $(window).height();
 		var scrollTop = $(window).scrollTop();
-		var heroTop = convertValue(scrollTop, 40, 280, 0, 100);
-		var heroAlpha = convertValue(scrollTop, 40, 340, 1, 0);
+		var heroTop = convertValue(scrollTop, 40, 340, 0, 100);
+		var heroAlpha = convertValue(scrollTop, 40, 300, 1, 0);
 		var headerAlpha = convertValue(scrollTop, 290, 340, 0, 1);
 		var header2Top = convertValue(scrollTop, 0, 50, 0, 30);
 
 		header.css('opacity', headerAlpha);
 		header2.css('top', header2Top);
 		$('#hero').css('opacity', heroAlpha).css('top', heroTop);
+		$('.workCTA').css('opacity', heroAlpha);
 
 		projects.each(function(){
 			var thumbnail = $(this);
@@ -173,7 +177,7 @@ function watchScroll() {
 			var iphoneLeft = convertValue(scrollTop, distanceMin, distanceMax, 0, miniPhoneWidth/1.5);
 			var iPhoneWidth = convertValue(scrollTop, distanceMin, distanceMax, maxiPhoneWidth, miniPhoneWidth);
 			var iPhoneOpacity = convertValue(scrollTop, distanceMin+100, distanceMin+300, 0, 1);
-			var contentOpacity =  convertValue(scrollTop, distanceMin+150, distanceMax-75, 0, 1);
+			var contentOpacity =  convertValue(scrollTop, distanceMin+280, distanceMax-50, 0, 1);
 			if (scrollTop <= distanceMax && scrollTop >= distanceMin){
 				img.css('width', iPhoneWidth);
 			} else {
@@ -189,14 +193,12 @@ function watchScroll() {
 			}
 			var marginTop = (thumbnail.outerHeight()-iphone.height())/2;
 			if (window.matchMedia('(max-width: 1024px)').matches) {
-				console.log($("body").width());
-				console.log(window.outerWidth);
 				iphoneLeft = convertValue(scrollTop, distanceMin, distanceMax, 0, 0);
 				contentOpacity =  convertValue(scrollTop, distanceMin+150, distanceMax+(thumbnail.height()/2), 0, 1);
 				marginTop = 60;
 			}
 			iphone.css('opacity', iPhoneOpacity).css('margin-left', (iPhoneWidth/-2)-iphoneLeft).css('top', marginTop);
-			video.css('width', iPhoneWidth*ratio);
+			video.css('width', iPhoneWidth*ratio).css('height', iPhoneWidth*ratio*(667/375));
 			detail.css('opacity', contentOpacity);
 		});
 

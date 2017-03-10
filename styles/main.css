@@ -223,6 +223,10 @@ a:hover{
 	line-height: 1.3;
 }
 
+#hero a{
+	color: #333;
+}
+
 #hero hr{
 	width: 50%;
 	margin: 60px auto;
@@ -257,7 +261,7 @@ a:hover{
 
 #work{
 	/*min-width: 960px;*/
-	margin: 0 20px 1% 20px;
+	margin: 0 0 1% 0;
 }
 
 #work .thumbnail .row{
@@ -459,63 +463,51 @@ a:hover{
 }
 
 #about {
-	margin: 0 auto 7%;
+	margin: 0 auto;
+	clear: both;
 }
 
-#about .large-10 {
-	padding-left: 7%;
-	padding-right: 7%;
+#about .avatar{
+	display: block;
+	width: 190px;
+	margin: 0 auto;
+	border-radius: 95px;
+	border: 5px solid #FFF;
+	box-shadow: 0 2px 3px 1px rgba(0,0,0,.12);
 }
 
-#about h2{
-	text-align: center;
+#about .row.intro{
+	padding-top: 7%;
+	margin-top: 3%;
+}
+
+#about .row.outro{
+	padding-bottom: 7%;
+	margin-bottom: 3%;
+}
+
+#about .large-5.col1{
+	padding-right: 3.5%;
 }
 
 #about p{
 	text-align: ;
 }
 
-#light-blue{
-	background-color: #F9F9FA;
-	position: relative;
-	width: 100%;
-	overflow: hidden;
+#about p.big{
+	font-size: 30px;
+    line-height: 1.3;
+    padding: 5% 0 2%;
 }
 
-#qualities {
-	text-align: center;
-	border-bottom: 1px solid #EFF1F4;
+#about p.big a{
+	color: #20262f;
+	text-decoration: underline;
 }
 
-#qualities span{
-	display: block;
-	margin: 2.5em 0;
-}
-
-#qualities label{
-	display: block;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 14px;
-	letter-spacing: 2px;
-	padding: 1.5em 0 0 0;
-}
-
-#qualities img{
-	display: block;
-	margin: 0 auto;
-}
-
-#desdev{
-	margin: 5% auto 7%;
-}
-
-#desdev h2{
-	text-align: center;
-}
-
-#desdev p{
-	text-align: justify;
+#about p.small{
+	font-size: 16px;
+	font-weight: 400;
 }
 
 #dark-blue{
@@ -525,6 +517,7 @@ a:hover{
 }
 
 #dark-blue h2{
+	font-weight: 400;
 	color: #fff;
 }
 
