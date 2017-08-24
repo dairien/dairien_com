@@ -46,7 +46,7 @@ body {
 }
 
 h1{
-	font-size: 56px;
+	font-size: 4.6vw;
 	color: #20262f;
 	margin-top: 1em;
 	margin-bottom: 0;
@@ -209,18 +209,58 @@ a:hover{
 	margin-left: 1%;
 }
 
+.slide{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100vh;
+	background: transparent;
+	/*border: 10px #fff solid;*/
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#container{
+	width : 100%; 
+	height : 100%; 
+	position : absolute; 
+	top : 0px; 
+	left : 0px;
+	margin : 0px;
+	padding : 0px;
+}
+
 #hero{
 	position: relative;
 	text-align: center;
-	margin: 2% auto;
-	/*border-bottom: 1px solid #EFF1F4;*/
-	padding-bottom: 4%;
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+}
+
+#hero .inside{
+	position: relative;
+	transform: translate(0px, -60%);
+	top: 50%;
+	width: 50vw;
+	margin: 0 auto 0;
+	z-index: 1;
+}
+
+#canvas{
+	position: absolute;
+	top: 10vh;
+	left: 10vw;
+	z-index: 0;
 }
 
 #hero p{
-	font-size: 30px;
-	padding: 0 10%;
-	line-height: 1.3;
+	font-size: 2.2vw;
+	line-height: 3.2vw;
 }
 
 #hero a{
@@ -235,28 +275,65 @@ a:hover{
 	border-bottom: 1px solid #EFF1F4;
 }
 
-#hero .workCTA{
+#hero ul{
 	display: inline-block;
-	width: auto;
-	background-color: #20262f/*#414446*/;
-	color: #fff;
-	font-size: 21px;
-	line-height: inherit;
-	height: 3.4em;
-	line-height: 3.4em;
-	padding: 0 2.5em;
-	margin: 0;
-	text-transform: uppercase;
-	font-weight: bold;
-	border-radius: 8px;
-	letter-spacing: 1px;
-	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	list-style: none;
+	text-align: center;
+	margin: 5vh 0 0;
+	padding: 0;
 }
 
-#hero .workCTA:link,
-#hero .workCTA:hover,
-#hero .workCTA:visited{
-	text-decoration: none;
+#hero ul li{
+	display: inline-block;
+	list-style: none;
+	padding: 0 2vw;
+}
+
+#hero ul li img{
+	height: 21px;
+	fill: #ccc;
+}
+
+#hero ul li img path{
+	fill: #ccc;
+	background-color: #ccc;
+}
+
+#hero.loaded {
+    opacity: 1;
+}
+#hero p,
+#hero h1,
+#hero ul,
+#hero img {
+    opacity: 0;
+    transition: all 600ms cubic-bezier(.21,.69,.75,.7) 450ms;
+    transform: translateY(20px);
+}
+#hero.loaded p,
+#hero.loaded img,
+#hero.loaded ul,
+#hero.loaded h1 {
+    opacity: 1;
+    transform: none;
+}
+#hero h1 {
+    transition-delay: 550ms;
+}
+#hero p {
+    transition-delay: 650ms;
+}
+#hero ul {
+    transition-delay: 700ms;
+    overflow: visible !important;
+}
+
+
+.deleteicons{
+	display: block;
+	margin: 75px auto 0;
 }
 
 #work{
@@ -264,16 +341,18 @@ a:hover{
 	margin: 0 0 1% 0;
 }
 
-#work .thumbnail .row{
-	max-width: inherit;
-}
-
 .thumbnail{
 	position: relative;
 	width: 100%;
-	padding: 15% 0;
+	height: 100vh;
 	background: rgba(240,240,240,1);
 	margin-bottom: 20px;
+}
+
+#work .thumbnail .row{
+	max-width: inherit;
+	position: relative;
+	top: 27vh;
 }
 
 .thumbnail .project-detail{
@@ -671,126 +750,48 @@ a:hover{
 }
 
 
-@media screen and (max-device-width: 480px) {
-	h2{
-		font-size: 72px;
-		text-align: center;
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+	.logo{ /* Have two separate sprite files, resize background to half of the size */
+		background-image: url(assets/sprite@2x.png);
+		background-size: 500px 500px;
+	}  
+}
+
+
+@media screen and (max-width: 1024px) {
+	#hero h1{
+		font-size: 6vw;
 	}
-	p{
-		font-size: 36px;
-		line-height: 1.3;
+	#hero p{
+		font-size: 3vw;
+		line-height: 4.5vw;
 	}
-    #header, #header2 {
-    	display: none;
-    }
-    #hero{
-    	margin-top: 10%;
-    	border: none;
-    }
-    #hero img{
-    	width: 8%;
-    }
-    #hero h1{
-    	font-size: 84px;
-    }
-    #hero p{
-    	font-size: 48px;
-    	padding: 0 8%;
-    }
-    #work .large-1,
-    #about .large-1{
-    	display: none;
-    }
-    #work .large-10,
-    #about .large-10{
-    	margin: 0;
-    	width: 100%;
-    	padding: 0 10%;
-    }
-    #work h2{
-    	text-align: left;
-    }
-    #qualities{
-    	display: none;
-    }
-    #desdev{
-    	margin: 10% 0;
-    }
-    #desdev .large-2{
-    	display: none;
-    }
-    #desdev .large-5{
-    	width: 100%;
-    	padding: 0 10%;
-    }
-    #desdev p{
-    	font-size: 48px;
-    }
-    #contact{
-    	margin: 10% 0;
-    }
-    #contact .large-1{
-    	display: none;
-    }
-    #contact .large-4,
-    #contact .large-7{
-    	width: 100%;
-    	padding: 0 10%;
-    	background: none;
-    }
-    #contact .large-6{
-    	width: 100%;
-    }
-    #contact p{
-    	font-size: 48px;
-    }
-    #contact p.twitter{
-    	margin-top: 80px;
-    	padding-top: 80px;
-    }
-    #contact p.twitter img{
-    	height: 48px;
-    	width: auto;
-    }
-    #contact label{
-    	font-size: 48px;
-    }
-    #contact input{
-    	height: 112px;
-    }
-    #contact #lname{
-    	display: none;
-    }
-    #contact input[type=submit]{
-    	width: 100%;
-    	height: 148px;
-    	font-size: 48px;
-    	border-radius: 12px;
-    	margin: 20px 0 40px;
-    }
-    #contact form{
-    	margin-top: 80px;
-    }
-    #footer .large-6{
-    	width: 100%;
-    	padding: 0 10%;
-    	text-align: center;
-    	margin: 0;
-    }
-    #footer p{
-    	font-size: 36px;
-    }
-    #dark-blue #footer .right p{
-    	text-align: center;
-    }
+	#hero .inside{
+		width: 65vw;
+	}
+	.thumbnail{
+		padding: 800px 20% 10% 20%;
+	}
+	.thumbnail p{
+		font-size: 2.5vw;
+		padding-right: 0;
+	}
+	#work .thumbnail .row{
+		top: inherit;
+	}
+	.thumbnail .screen-tabs{
+		font-size: 2.5vw;
+		margin-right: 0;
+	}
+
 }
 
 @media screen and (max-width: 700px) {
 	#header, #header2{
 		display: none;
-	}
-	#hero{
-		margin: 10% 0;
 	}
 	#work .large-1{
 		display: none;
@@ -834,30 +835,10 @@ a:hover{
 	}
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
-	.logo{ /* Have two separate sprite files, resize background to half of the size */
-		background-image: url(assets/sprite@2x.png);
-		background-size: 500px 500px;
-	}  
-}
-
-@media screen and (max-width: 1024px) {
-	.thumbnail{
-		padding: 800px 20% 10% 20%;
-	}
-	.thumbnail p{
-		font-size: 2.5vw;
-		padding-right: 0;
-	}
-
-	.thumbnail .screen-tabs{
-		font-size: 2.5vw;
-		margin-right: 0;
-	}
-
-}
-
 @media screen and (max-width: 640px) {
+	#hero ul li img {
+		height: 16px;
+	}
 	#work .thumbnail{
 		padding: 800px 7% 10% 7%;
 	}
@@ -878,6 +859,148 @@ a:hover{
 	}
 }
 
+@media screen and (max-device-width: 480px) {
+	h2{
+		font-size: 72px;
+		text-align: center;
+	}
+	p{
+		font-size: 36px;
+		line-height: 1.3;
+	}
+	#hero h1{
+		font-size: 10vw;
+	}
+	#hero p{
+		font-size: 5vw;
+		line-height: 7.5vw;
+	}
+	#hero .inside{
+		width: 75vw;
+	}
+	#hero ul li {
+		padding: 0 2vw;
+	}
+	#hero ul li a{
+		padding: 2vw;
+	}
+	#hero img{
+		width: 64px;
+	}
+	#hero ul li img{
+		height: 44px;
+		width: inherit;
+	}
+    #work .thumbnail{
+    	padding: 800px 10% 15%;
+    }
+    #work .thumbnail p{
+    	font-size: 38px;
+    }
+    #work .thumbnail h3{
+    	font-weight: 64px;
+    }
+    #work .thumbnail ul.competency{
+    	font-size: 24px;
+    	height: 48px;
+    }
+    #work .thumbnail .screen-tabs{
+    	font-size: 38px;
+    }
+    #work .thumbnail .screen-tabs li{
+    	padding: 20px 0;
+    }
+    #work .large-1,
+    #about .large-1{
+    	display: none;
+    }
+    #work .large-10,
+    #about .large-10{
+    	margin: 0;
+    	width: 100%;
+    	padding: 0 10%;
+    }
+    #about{
+    	padding: 5% 0;
+    }
+    #about .row p.big{
+    	font-size: 58px;
+    }
+    #about .row p.big a{
+    	display: block;
+    }
+    #about .row p{
+    	font-size: 38px;
+    }
+    #about .medium-12 p{
+    	padding: 0 8%;
+    }
+    #contact{
+    	margin: 10% 0;
+    }
+    #contact .large-1{
+    	display: none;
+    }
+    #contact .large-4,
+    #contact .large-7{
+    	width: 100%;
+    	padding: 0 10%;
+    	background: none;
+    }
+    #contact .large-6{
+    	width: 100%;
+    }
+    #contact h2{
+    	font-size: 84px;
+    }
+    #contact p{
+    	font-size: 48px;
+    }
+    #contact p.twitter{
+    	margin-top: 80px;
+    	padding-top: 80px;
+    }
+    #contact p.twitter img{
+    	height: 48px;
+    	width: auto;
+    }
+    #contact label{
+    	font-size: 48px;
+    }
+    #contact input{
+    	height: 112px;
+    }
+    #contact #lname{
+    	display: none;
+    }
+    #contact input[type=submit]{
+    	width: 100%;
+    	height: 148px;
+    	font-size: 48px;
+    	border-radius: 12px;
+    	margin: 20px 0 40px;
+    }
+    #contact form{
+    	margin-top: 80px;
+    }
+    #footer .large-6{
+    	width: 100%;
+    	padding: 0 10%;
+    	text-align: center;
+    	margin: 0;
+    }
+    #footer p{
+    	font-size: 16px;
+    	padding-bottom: 10%;
+    }
+    #footer p a{
+    	font-size: 32px;
+    	padding: 0 2%;
+    }
+    #dark-blue #footer .right p{
+    	text-align: center;
+    }
+}
 
 
 
