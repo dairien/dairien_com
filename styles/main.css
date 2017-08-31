@@ -32,6 +32,47 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+@-webkit-keyframes hvr-bob {
+  0% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@keyframes hvr-bob {
+  0% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@-webkit-keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+
 body {
 	background: #fff;
 	color: #333;
@@ -87,29 +128,6 @@ a:hover{
   min-height: 1px;
 }
 
-#header{
-	width: 100%;
-	padding: 1em;
-	margin: 0;
-	max-width: inherit;
-	position: fixed;
-	top: 0;
-	z-index: 999;
-	background-color: #fff;
-	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.10);
-	opacity: 0;
-	z-index: 10;
-}
-
-#header2{
-	width: 100%;
-	padding: 1em;
-	margin: 0;
-	max-width: inherit;
-	position: relative;
-	z-index: 2;
-}
-
 #dotNav{
 	display: block;
 	position: fixed;
@@ -149,64 +167,6 @@ a:hover{
 
 #header .logo{
 	text-align: center;
-}
-
-#header ul,
-#header2 ul{
-	list-style: none;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	display: block;
-	overflow: hidden;
-}
-
-#header ul li,
-#header2 ul li{
-	display: inline-block;
-}
-
-#header .nav li,
-#header2 .nav li{
-	margin-right: 4%;
-}
-
-#header .nav a,
-#header .nav a:link,
-#header2 .nav a,
-#header2 .nav a:link{
-	font-weight: normal;
-	color: #333;
-	text-transform: uppercase;
-	font-size: 11px;
-	letter-spacing: 1px;
-	line-height: 32px;
-	opacity: .5;
-	transition: .3s;
-}
-
-#header .nav a:hover,
-#header2 .nav a:hover{
-	text-decoration: none;
-	opacity: 1 !important;
-	transition: .4s;
-}
-
-#header .nav .active a,
-#header .nav .active a:link{
-	font-weight: bold !important;
-	opacity: 1 !important;
-}
-
-#header .social,
-#header2 .social{
-	text-align: right;
-}
-
-#header .social li,
-#header2 .social li{
-	margin-left: 1%;
 }
 
 .slide{
@@ -288,12 +248,41 @@ a:hover{
 #hero ul li{
 	display: inline-block;
 	list-style: none;
-	padding: 0 2vw;
+	padding: 0;
 }
-
+#hero ul li a{
+	padding: 2vw;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 0 1px transparent;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+}
 #hero ul li img{
 	height: 21px;
 	fill: #ccc;
+}
+#hero ul li a:hover{
+	-webkit-animation-name: hvr-bob-float, hvr-bob;
+	animation-name: hvr-bob-float, hvr-bob;
+	-webkit-animation-duration: .3s, 1.5s;
+	animation-duration: .3s, 1.5s;
+	-webkit-animation-delay: 0s, .3s;
+	animation-delay: 0s, .3s;
+	-webkit-animation-timing-function: ease-out, ease-in-out;
+	animation-timing-function: ease-out, ease-in-out;
+	-webkit-animation-iteration-count: 1, infinite;
+	animation-iteration-count: 1, infinite;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-direction: normal, alternate;
+	animation-direction: normal, alternate;
+}
+#hero ul li img.twitter{
+	height: 20px;
+}
+#hero ul li img.github{
+	height: 26px;
 }
 
 #hero ul li img path{
@@ -839,6 +828,12 @@ a:hover{
 	#hero ul li img {
 		height: 16px;
 	}
+	#hero ul li img.twitter {
+		height: 15px;
+	}
+	#hero ul li img.github {
+		height: 20px;
+	}
 	#work .thumbnail{
 		padding: 800px 7% 10% 7%;
 	}
@@ -890,6 +885,12 @@ a:hover{
 	#hero ul li img{
 		height: 44px;
 		width: inherit;
+	}
+	#hero ul li img.twitter{
+		height: 42px;
+	}
+	#hero ul li img.github{
+		height: 52px;
 	}
     #work .thumbnail{
     	padding: 800px 10% 15%;

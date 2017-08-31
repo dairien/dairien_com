@@ -17,7 +17,7 @@ function convertValue(value, r1Min, r1Max, r2Min, r2Max) {
 $(document).ready(function(){
 
 	sections = $('.section');
-	projects = $('.thumbnail');
+	projects = $('.thumbnail, #about');
 	dotNav = $('#dotNav');
 
 	projects.each(function(){
@@ -72,7 +72,7 @@ $(document).ready(function(){
 	});
 	*/
 
-	$("#long-tail").hide();
+	/*$("#long-tail").hide();*/
 
 	$('#hero').addClass('loaded');
 
