@@ -99,6 +99,9 @@ $(document).ready(function(){
 		var myIndex = $(this).index('#dotNav li');
 		var centeredOffset = projects.eq(myIndex).offset().top;
 		centeredOffset -= ($(window).height() - projects.eq(myIndex).outerHeight())/2;
+		if(myIndex == 4){
+			centeredOffset = projects.eq(projects.length-1).offset().top;
+		}
 		$('html, body').stop(true, true).animate({
 			scrollTop: centeredOffset
 		}, 2000, 'easeOutQuart');
@@ -108,7 +111,7 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		$("#long-tail").css('opacity', 1).slideDown(200, function(){
-			var myOffset = sections.eq(sections.length-1).offset().top;
+			var myOffset = projects.eq(projects.length-1).offset().top;
 			var pageBottom = $(document).outerHeight()-$(window).height();
 			if (myOffset > pageBottom){ myOffset = pageBottom; }
 			$('html, body').stop(true, true).animate({
@@ -166,14 +169,24 @@ $(document).ready(function(){
 function watchScroll() {
 	$(window).scroll(function(){
 
+		console.log('watch scroll');
+
 		var height = $(window).height();
 		var scrollTop = $(window).scrollTop();
 		var heroTop = convertValue(scrollTop, 40, height/8, 0, 10);
 		var heroAlpha = convertValue(scrollTop, 40, height/2, 1, 0);
+		var hero = $('#hero');
 
-		$('#hero').css('opacity', heroAlpha).css('transform', "translate(0, "+heroTop+"px)");
-
-		console.log('fittin to go');
+		if(heroAlpha <= 0){
+			if(!hero.hasClass('hidden')){
+				hero.addClass('hidden').css('height', '0 !important');
+			}
+		} else if (heroAlpha > 0) {
+			if(hero.hasClass('hidden')){
+				hero.removeClass('hidden')
+			}
+			hero.css('opacity', heroAlpha).css('transform', "translate(0, "+heroTop+"px)");
+		}
 
 		projects.each(function(){
 			var thumbnail = $(this);
@@ -217,8 +230,8 @@ function watchScroll() {
 }
 
 function checkSection() {
-	for(i=1;i<sections.length;i++){
-		var sectionTop = sections.eq(i).offset().top-240;
+	for(i=1;i<projects.length;i++){
+		var sectionTop = projects.eq(i).offset().top-240;
 		var currentTop = $(document).scrollTop();
 		var pageBottom = $(document).outerHeight()-$(window).height();
 		if (currentTop > sectionTop) {
@@ -239,11 +252,11 @@ function checkProject() {
 			$("li", dotNav).removeClass("active");
 			$("li", dotNav).eq(i).addClass("active");
 		}
-		if (currentTop > sections.eq(2).offset().top-300 || window.matchMedia('(max-width: 640px)').matches){
+		/*if (currentTop > projects.eq(2).offset().top-300 || window.matchMedia('(max-width: 640px)').matches){
 			if (dotNav.is(":visible")){ dotNav.hide() }
 		} else {
 			if(!dotNav.is(":visible")) { dotNav.show() }
-		}
+		}*/
 	}
 }
 

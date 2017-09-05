@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="35px" height="34px" viewBox="0 0 35 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="33px" height="32px" viewBox="0 0 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
     <title>logo</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="work" transform="translate(-703.000000, -88.000000)">
-            <g id="logo" transform="translate(703.000000, 88.000000)">
-                <polygon id="Triangle-1" fill="#5FB6E8" points="11.6875 17 23.375 34 0 34"></polygon>
-                <polygon id="Triangle-1-Copy" fill="#429BCE" transform="translate(23.375000, 25.500000) scale(-1, -1) translate(-23.375000, -25.500000) " points="23.375 17 35.0625 34 11.6875 34"></polygon>
-                <polygon id="Triangle-1-Copy-3" fill="#537393" transform="translate(11.687500, 8.500000) scale(1, -1) translate(-11.687500, -8.500000) " points="11.6875 0 23.375 17 0 17"></polygon>
-                <polygon id="Triangle-1-Copy-2" fill="#2A3D52" transform="translate(23.375000, 8.500000) scale(-1, 1) translate(-23.375000, -8.500000) " points="23.375 0 35.0625 17 11.6875 17"></polygon>
+        <g id="Desktop-HD-Copy-6" transform="translate(-734.000000, -120.000000)" fill-rule="nonzero">
+            <g id="logo" transform="translate(734.000000, 120.000000)">
+                <polygon id="Triangle-1" fill="#6BC4F5" points="11 16 22 32 0 32"></polygon>
+                <polygon id="Triangle-1-Copy" fill="#039FF6" transform="translate(22.000000, 24.000000) rotate(180.000000) translate(-22.000000, -24.000000) " points="22 16 33 32 11 32"></polygon>
+                <polygon id="Triangle-1-Copy-3" fill="#4D7287" transform="translate(11.000000, 8.000000) scale(-1, 1) rotate(-180.000000) translate(-11.000000, -8.000000) " points="11 0 22 16 0 16"></polygon>
+                <polygon id="Triangle-1-Copy-2" fill="#2F5B73" transform="translate(22.000000, 8.000000) scale(-1, 1) translate(-22.000000, -8.000000) " points="22 0 33 16 11 16"></polygon>
             </g>
         </g>
     </g>

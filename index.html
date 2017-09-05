@@ -10,6 +10,16 @@
 <script type="text/javascript" src="scripts/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="scripts/bg.js"></script>
 <script type="text/javascript" src="scripts/main.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5960492-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <title>Dairien Boyd</title>
 </head>
 
@@ -22,7 +32,11 @@
 		<div class="inside">
 			<img src="./images/logo.svg" alt="" width="32" />
 			<h1>Hi! I'm Dairien.</h1>
-			<p>I build digital products for the rapidly evolving world. Please take a moment to check out some of <a class="workCTA" href="#">my work</a> or get in touch with me. <a class="messageCTA" href="#">Let's connect</a>.</p>
+			<p>I build digital products for the rapidly evolving world. Check out some of my work or get in touch.</p>
+			<div class="ctas">
+				<a class="workCTA btn" href="#">See Past Work</a>
+				<a class="messageCTA btn" href="#"><img src="./images/icon_mail-blue.svg" alt="" width="16" /> Contact Me</a>
+			</div>
 			<ul>
 				<li><a href="http://twitter.com/dairien" target="_blank"><img class="twitter" src="./images/icon_twitter.svg" alt="Twitter Profile" height="21" /></a></li>
 				<li><a href="http://github.com/dairien" target="_blank"><img class="github" src="./images/icon_github.svg" alt="Github Profile" /></a></li>
@@ -175,90 +189,78 @@
 
 </div>
 
-<div id="about" class="section">
-	<div class="row intro">
-	    <div class="large-1 medium-1 columns"></div>
-	    <div class="large-10 medium-10 columns">
-	    	<img class="avatar" src="./images/profile-photo@2x.png" alt="" width="190" />
-	    	<p class="big">You can find me in chilly San Francisco or sunny San Diego depending on the time of year. <a href="#">Let's get coffee</a></p>
-	    </div>
-	    <div class="large-1 medium-1 columns"></div>
-	</div>
-	<div class="row outro">
-	    <div class="large-1 medium-12 columns"></div>
-	    <div class="large-5 medium-12 columns col1">
-	    	<p>My brief history includes front-end development and design at the agency <a href="https://www.dtelepathy.com/" target="_blank">digital-telepathy</a>, product design at <a href="http://www.groupon.com" target="_blank">Groupon</a> and sole designer at <a href="https://itunes.apple.com/us/app/rise-nutrition-weight-loss-coach/id794278760?mt=8" target="_blank">Rise</a>, a startup that was acquired by <a href="http://www.onemedical.com" target="_blank">One Medical</a>. My background spans the full range of product development roles, from design and development on the technical side to user research and product strategy.</p>
-	    </div>
-	    <div class="large-5 medium-12 columns col2">
-	    	<p>My core competencies include: UX, UI Design, Interaction Design, Prototyping, Mobile Design, Swift/iOS Development, User Research, Product Strategy, Product Development, Web Design, XHTML/CSS, JavaScript, PHP/MySQL, ActionScript 2.0 &amp; 3.0, Branding/Identities, Banners and Advertisements.</p>
-	    </div>
-	    <div class="large-1 medium-12 columns"></div>
-	</div>
-</div>
+<div id="about">
 
-<div id="dark-blue">
+	<div id="headshot" class="row">
+		<img src="./images/headshot@2x.jpg" alt="" width="618" />
+	</div>
 
-	<div class="row section" id="contact">
-		<div class="large-4 medium-4 columns">
-			<h2>Send Me a Message</h2>
-			<p>I’m always available to chat. Whether you want to talk shop or just say hello, drop me a line.<p>
-			<p class="twitter"><img src="./images/icon_twitter.png" alt="" width="24" /> You can also DM me <a href="http://twitter.com/dairien" target="_blank">@dairien</a></p>
-		</div>
-		<div class="large-1 medium-1 columns"></div>
-		<div class="large-7 medium-7 columns">
-			<form id="contactform" action="contact.php" method="post">
-				<div class="row">
-					<div class="large-6 medium-6 columns">
-						<label>Name*</label>
-						<input id="name" type="text" />
-					</div>
-					<div class="large-6 medium-6 columns">
-						<label></label>
-						<input id="lname" type="text" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 medium-12 columns">
-						<label>Email*</label>
-						<input id="email" type="text" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 medium-12 columns">
-						<label>Subject*</label>
-						<input type="text" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 medium-12 columns">
-						<label>Message*</label>
-						<textarea id="message"></textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-6 medium-6 columns">
-						<input type="submit" value="SUBMIT" />
-					</div>
-					<div class="large-6 medium-6 columns">
-						<div id="notice"></div>
-					</div>
-				</div>
-			</form>
+	<div id="emailme" class="row">
+		<a href="mailto:hi@dairien.com"><span class="mail"><img src="./images/icon_mail.svg" alt="" width="24" /></span>hi@dairien.com</a>
+	</div>
+
+	<div id="intro" class="row">
+		<h2>Like products, people have a purpose.  My purpose is to craft great experiences.</h2>
+		<p>For over 12 years, I have matured and nurtured my talents as a product-savvy, multidisciplinary designer and engineer. I am able to work in all phases of the product development cycle. My unique skillset provides me with the ability to not only build a solution from the ground up, but also assess and address challenges with creative problem solving tactics.</p>
+		<p>Generating a well-conceived solution takes continual practice. Although there are both right and wrong answers to a problem, the distinction is not always black and white. Instead, reaching the correct answer equates to moving along a spectrum. How close are you to the correct answer and how do you surpass that qualification with a great solution? That’s my sweet-spot.</p>
+	</div>
+
+	<div id="skills-graph">
+		<img src="./images/skills-graph@2x.jpg" alt="Skills" />
+	</div>
+
+	<div id="skills">
+		<div class="row">
+			<div class="skill">
+				<h3>Product Definition</h3>
+				<p>The first phase of design is to understand the problem. My process is to define the problem through a series of exercises that includes needs finding, journey mapping, job stories, listing assumptions and How Might Wes.  I gather supplemental guidance through competitive analysis and research on related emerging technologies. It is important to acknowledge blindspots. By adopting a beginner’s mindset, I am able to gather a full understanding of the problem.</p>
+			</div>
+			<div class="skill">
+				<h3>Design</h3>
+				<p>This is the fun part. I primarily work in one of two design modes. The first mode is explore-mode. In <i>explore-mode</i>, I make quick iterations to improve the usability, accessibility and overall experience of a design. The second mode is the <i>polish-mode</i>. When in the polish-mode I fine-tune the design’s aesthetic, appeal, and delight. The overarching design language is defined by a style guide or pattern library to establish continuity (e.g., typography, colors, interactions).</p>
+				<p>At the core of my design process are the fundamental principles of Human-Centered Design. Because of this, I am a major proponent of the collaborative design process. I’ve organized and facilitated dozens of design sprints for small and large teams. The exercises have reliably brought together teams to solve difficult problems from the customer’s perspective. A design sprint setting fosters many important learnings and insights, particularly around customer empathy.</p>
+			</div>
+			<div class="skill">
+				<h3>Prototyping</h3>
+				<p>In order to understand the effectiveness of a design, it must be tested with the intended customers. I use rapid prototyping to facilitate design iterations. With clearly defined success metrics in place, the iterations can work towards an ideal solution. Thus, increasing the likelihood of success (e.g., engagement, adoption, task success).</p>
+				<p>Oftentimes, I take the following approach: What’s the minimum required to build a prototype that will yield feedback as quickly as possible? The faster a design is put into the hands of people, the more quickly success can be measured.</p>
+			</div>
+			<div class="skill">
+				<h3>User Research</h3>
+				<p>Research is also at the core of what I do. Understanding a customer through empathy is integral to communicating with that customer and providing a solution that solves their most crucial needs. I’ve found that the more a team invests in talking to customers, the better the team is at circumventing uncertainty, biases and confusion around the problem.</p>
+				<p>Moreover, the team is able to quickly identify key insights. In past roles I’ve utilized a combination of surveys, user interviews, guerrilla research and field research to observer customer behaviors, pain-points and patterns.</p>
+			</div>
+			<div class="skill">
+				<h3>Engineering</h3>
+				<p>The ability to bring my designs to life has always been the ultimate goal. My engineering background started with front-end development. After mastering responsive HTML/CSS and JavaScript, I began to sharpen my PHP, Node and Rails skills. Additionally, I have experience building dynamic websites with CMS frameworks like WordPress.</p>
+				<p>More recently, my focus has been on mobile and iOS development, specifically writing in Swift 3.0. My engineering background allows me to bridge the gap between design and development as well as deeply understand the technical implications of a design.</p>
+			</div>
+			<div class="skill">
+				<h3>Product Strategy</h3>
+				<p>As a designer, it is my job to understand the intricacies of a business and balance business goals with user goals. Furthermore, measuring the success of product design is not only tied to user success but also business impact. Each decision made must factor in the inevitable evolution of the business. Well-defined metrics and analytics reports help guide these decisions. The trick is to apply tactics that engender improved decision-making over time.</p>
+			</div>
 		</div>
 	</div>
 
-	<div class="row sub" id="footer">
-		<div class="large-6 medium-6 columns">
-			<p>&copy; MADE BY DAIRIEN</p>
-		</div>
-		<div class="large-6 medium-6 columns right">
-			<p>
-				<a href="http://dribbble.com/dairien" target="_blank">Dribbble</a> &bull; 
-				<a href="http://github.com/dairien" target="_blank">Github</a> &bull; 
-				<a href="http://linkedin.com/in/dairien" target="_blank">LinkedIn</a> &bull; 
-				<a href="mailto:contact@dairien.com" target="_blank">Email</a>
-			</p>
-		</div>
+	<div id="closing" class="row">
+		<h2>I help companies tell their story and deliver real value with their products.</h2>
+		<p>I’ve operated under a variety of roles leading design initiatives to solve complex problems at startups, large companies, finance, health, e-commerce, and agency to name a few.</p>
+		<p>Here are a few companies that I've worked with:</p>
+		<ul>
+			<li><a href="http://www.onemedical.com/" target="_blank">One Medical</a></li>
+			<li><a href="http://www.rise.us/" target="_blank">Rise</a></li>
+			<li><a href="http://www.codepath.com/" target="_blank">Codepath</a></li>
+			<li><a href="http://www.adobe.com/" target="_blank">Adobe</a></li>
+			<li><a href="http://www.groupon.com/" target="_blank">Groupon</a></li>
+			<li><a href="http://www.fiftyandfifty.org/" target="_blank">Fifty&amp;Fifty</a></li>
+			<li><a href="http://www.dtelepathy.com" target="_blank">Digital Telepathy</a></li>
+		</ul>
+		<div id="marker"></div>
+		<p>You can find me in chilly San Francisco or sunny San Diego depending on the time of year.</p>
+		<p>
+			<img src="./images/icon_mail-blue.svg" alt="" width="18" /> &nbsp;
+			<a href="mailto:hi@dairien.com">hi@dairien.com</a>
+		</p>
 	</div>
 
 </div>
