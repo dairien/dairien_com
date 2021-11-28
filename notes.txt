@@ -1,0 +1,160 @@
+Light and Dark mode CSS
+
+Setup node website
+	install smooth-scrollbar
+
+Subtle and simple animations / fade / movement
+
+List easy to scan 1 or 2 columns
+
+h1, h2, h3, body, link
+
+no images except for photo
+
+nice big media symbols
+
+use stylus or javascript based project
+
+artistic colors
+	rich black - #010b13
+	blue-magenta / mauve - https://encycolorpedia.com/f6e5ff
+	gold & auburn red - https://encycolorpedia.com/d4af37
+
+	Color scheme
+	dust storm - https://encycolorpedia.com/e5ccc9
+		inverted #1a3336
+		silver #c0c0c0
+		white #fff
+
+only soft and delightful movement
+
+say something
+
+grainy texture - minimal
+	light and dark
+	canvas animated noise
+		like elisa dubois https://elisadubois.fr/
+
+
+basics
+	worked with and for
+	name dropping
+		groupon
+		rise
+		one medical
+		all turtles
+		mmhmm
+
+
+Actions
+	contact me - send email
+	call me - 4153220446
+	links?
+
+	CSS
+		[ ] Cascade, stagger load elements
+		[x] Page easing on scroll
+		[x] Noise
+				https://codepen.io/dairien/pen/NWvrGdo
+
+	Fonts
+
+	Stacks
+		serif
+			title
+				Baskerville OF
+				GT Alpina Fine,HiraMinProN-W3,Helvetica Neue,Arial,sans-serif
+				Antonia,serif
+				'Canela Text'
+			body
+				Cassia, Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace
+		betweener
+			archia-light (check out *)
+			Nouvelle Grotesk
+		sans-serif
+			body
+				HelveticaNowDisplay,Arial,sans-serif
+				"NeueHaasGroteskDisp"
+				"IBM Plex Sans", -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+				 "IBM Plex Mono", Consolas, monaco, monospace
+			title
+				caps
+					"TT Norms"
+
+
+vertical dashed lines (with css) 
+
+
+Dairien Boyd
+
+@dairien
+
+///////////////////////////////////////////
+
+Thank you for stopping by.
+I currently build products at mmhmm.
+
+
+2021
+	mmhmm
+2020
+	1. 
+		Google designer feature
+			- https://developers.googleblog.com/2021/02/these-black-tech-creators-are-changing-the-domain.html
+		Video Press play
+	2.
+		Apple M1 Video – Apple Silicon Macs
+			- https://developer.apple.com/videos/play/tech-talks/10865/
+		Video Press play
+	3.
+		Culture Fit Podcast
+		Podcast listen
+2018
+	Twisty Tongue - All Turtles
+	App Store
+
+2017 One Medical
+
+2014 Rise
+
+2011 Groupon
+
+
+LinkedIn – Contact – About
+
+
+V2 - About Page
+
+
+Creative Mornings: Divergent
+	https://creativemornings.com/themes/divergent
+
+
+
+
+
+All Turtles
+	Disco, Tellus, FastForward, Leaders, Trackable, Edwin, Emotional Chat app (egg)
+	Vitally
+	Tokyo, Paris, etc.
+
+One Medical
+
+Rise
+
+
+
+
+
+SO - Smooth Scroll - https://idiotwu.github.io/smooth-scrollbar/
+
+
+
+
+
+BIOS
+
+motto
+
+
+
