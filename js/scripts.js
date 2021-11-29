@@ -17,7 +17,8 @@ $(document).ready(function(){
     var underlay = $("#underlay")
     var noise = $("#noise")
     $(".highlights a").each(function(index) {
-        $(this).bind("click", function(){
+        $(this).bind("click", function(e){
+            e.preventDefault();
             underlay.css("background-color", data.highlights[index].color)
             noise.css("opacity", data.highlights[index].noise)
             if (data.highlights[index].mode == "light") {
