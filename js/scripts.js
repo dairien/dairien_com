@@ -1,15 +1,16 @@
 const data = {
   highlights: [
-    {name: "mmhmm OOO", color:"#DC6872", noise:"0.03", mode: ""},
-    {name: "mmhmm", color:"#403AE9", noise:"0.06", mode: ""},
-    {name: "Culture Fit", color:"#EDD83F", noise:"0.03", mode: "light"},
-    {name: "Creative Mornings", color:"#FFDE8A", noise:"0.03", mode: "light"},
-    {name: "Google #MyDomain", color:"#6890E5", noise:"0.04", mode: ""},
-    {name: "Apple M1", color:"#F5F5F7", noise:"0.03", mode: "light"},
-    {name: "Twisty Tongue", color:"#403D5A", noise:"0.06", mode: ""},
-    {name: "All Turtles Studio", color:"#EB5757", noise:"0.05", mode: ""},
-    {name: "One Medical", color:"#4F8069", noise:"0.05", mode: ""},
-    {name: "Rise", color:"#03D6B0", noise:"0.03", mode: "light"}
+    {name: "mmhmm OOO", color:"#DC6872", noise:"0.1", mode: ""},
+    {name: "mmhmm", color:"#403AE9", noise:"0.15", mode: ""},
+    {name: "Culture Fit", color:"#EDD83F", noise:"0.1", mode: "light"},
+    {name: "Creative Mornings", color:"#FFDE8A", noise:"0.1", mode: "light"},
+    {name: "Google #MyDomain", color:"#6890E5", noise:"0.1", mode: ""},
+    {name: "Apple M1", color:"#F5F5F7", noise:"0.1", mode: "light"},
+    {name: "Twisty Tongue", color:"#403D5A", noise:"0.2", mode: ""},
+    {name: "All Turtles Studio", color:"#EB5757", noise:"0.1", mode: ""},
+    {name: "One Medical", color:"#4F8069", noise:"0.1", mode: ""},
+    {name: "Rise", color:"#03D6B0", noise:"0.1", mode: "light"},
+    {name: "default", color:"010B13", noise:"0.1", mode: ""}
   ]
 }
 
@@ -49,7 +50,7 @@ const noise = () => {
         const len = buffer32.length;
 
         for (let i = 0; i < len; i++) {
-            if (Math.random() < 0.5) {
+            if (Math.random() < 0.8) {
                 buffer32[i] = 0xff000000;
             }
         }
@@ -76,7 +77,7 @@ const noise = () => {
 
         loopTimeout = window.setTimeout(() => {
             window.requestAnimationFrame(loop);
-        }, (1000 / 25));
+        }, (250 / 50));
     };
 
 
