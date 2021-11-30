@@ -1,35 +1,46 @@
 const data = {
   highlights: [
-    {name: "mmhmm OOO", color:"#DC6872", noise:"0.1", mode: ""},
-    {name: "mmhmm", color:"#403AE9", noise:"0.15", mode: ""},
-    {name: "Culture Fit", color:"#EDD83F", noise:"0.1", mode: "light"},
-    {name: "Creative Mornings", color:"#FFDE8A", noise:"0.1", mode: "light"},
-    {name: "Google #MyDomain", color:"#6890E5", noise:"0.1", mode: ""},
-    {name: "Apple M1", color:"#F5F5F7", noise:"0.1", mode: "light"},
-    {name: "Twisty Tongue", color:"#403D5A", noise:"0.2", mode: ""},
-    {name: "All Turtles Studio", color:"#EB5757", noise:"0.1", mode: ""},
-    {name: "One Medical", color:"#4F8069", noise:"0.1", mode: ""},
-    {name: "Rise", color:"#03D6B0", noise:"0.1", mode: "light"},
-    {name: "default", color:"010B13", noise:"0.1", mode: ""}
+    {name: "mmhmm OOO", className:"mmhmmOOO", mode: ""},
+    {name: "mmhmm", className:"mmhmm", mode: ""},
+    {name: "Culture Fit", className:"culturefit", mode: "light"},
+    {name: "Creative Mornings", className:"creativemornings", mode: "light"},
+    {name: "Google #MyDomain", className:"google", mode: ""},
+    {name: "Apple M1", className:"apple", mode: "light"},
+    {name: "Twisty Tongue", className:"twistytongue", mode: ""},
+    {name: "All Turtles Studio", className:"allturtles", mode: ""},
+    {name: "One Medical", className:"onemedical", mode: ""},
+    {name: "Rise", className:"rise", mode: "light"},
+    {name: "default", className:"", noise:"0.1", mode: ""}
   ]
 }
 
 $(document).ready(function(){
-    var underlay = $("#underlay")
-    var noise = $("#noise")
+
+    /* Page fade on load */
+    $('.wrapper section, .wrapper header').each(function(index) {
+        var increment = (index+1)*1000
+        $(this).css("opacity", 0).animate({
+            opacity: 1
+        }, increment, function() {
+            // complete
+        });
+    });
+    
+
+
+    /* Highlight links */
     $(".highlights a").each(function(index) {
         $(this).bind("click", function(e){
             e.preventDefault();
-            underlay.css("background-color", data.highlights[index].color)
-            noise.css("opacity", data.highlights[index].noise)
             if (data.highlights[index].mode == "light") {
-                $('body').addClass("light")
+                $('body').attr("class", data.highlights[index].className+" light")
             } else {
-                $('body').removeClass("light")
+                $('body').attr("class", data.highlights[index].className)
             }
             /* alert( index + ": " + $( this ).text() ); */
         });
     });
+
 });
 
 const noise = () => {

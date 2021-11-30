@@ -165,10 +165,29 @@ header{
   height: 100%;
   background: #092030;
   pointer-events: none;
+  background-repeat: no-repeat;
+  background-blend-mode: exclusion;
   -webkit-transition: background-color 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   -ms-transition: background-color 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transition: background-color 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -webkit-transition: background-image 250ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -ms-transition: background-image 250ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition: background-image 250ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -webkit-transition: background-position 2500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -ms-transition: background-position 2500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition: background-position 2500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
+
+.mmhmmOOO .underlay { background-color: #DC6872; }
+.mmhmm .underlay { background-color: #403AE9; }
+.culturefit .underlay { background-color: #EDD83F; }
+.creativemornings .underlay { background-color: #FFDE8A; }
+.google .underlay { background-color: #6890E5; }
+.apple .underlay { background-color: #F5F5F7; }
+.twistytongue .underlay { background-color: ##403D5A; }
+.allturtles .underlay { background-color: #EB5757; }
+.onemedical .underlay { background-color: #4F8069; }
+.rise .underlay { background-color: #03D6B0; }
 
 .noise {
   z-index: -2;
@@ -182,6 +201,77 @@ header{
   -webkit-transition: opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   -ms-transition: opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transition: opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.mmhmmOOO .noise { opacity: 0.1; }
+.mmhmm .noise { opacity: 0.15; }
+.culturefit .noise { opacity: 0.1; }
+.creativemornings .noise { opacity: 0.1; }
+.google .noise { opacity: 0.1; }
+.apple .noise { opacity: 0.1; }
+.twistytongue .noise { opacity: 0.2; }
+.allturtles .noise { opacity: 0.1; }
+.onemedical .noise { opacity: 0.1; }
+.rise .noise { opacity: 0.1; }
+
+.mmhmmOOO .underlay{
+  background-image: url("../media/highlights/mmhmmOOO.png");
+  background-size: 500px 500px;
+  background-position: 5% 115%;
+}
+
+.mmhmm .underlay{
+  background-image: url("../media/highlights/mmhmm.png");
+  background-size: 500px 500px;
+  background-position: 20% center;
+}
+
+.culturefit .underlay{
+  background-image: url("../media/highlights/culturefit-light.png");
+  background-size: 500px 500px;
+  background-position: 80% 10%;
+}
+
+.creativemornings .underlay{
+  background-image: url("../media/highlights/creativemornings.png");
+  background-size: 500px 500px;
+  background-position: center -50%;
+}
+
+.google .underlay{
+  background-image: url("../media/highlights/google.png");
+  background-size: 500px 500px;
+  background-position: 90% 120%;
+}
+
+.apple .underlay{
+  background-image: url("../media/highlights/apple.png");
+  background-size: 500px 500px;
+  background-position: 40% 25%;
+}
+
+.twistytongue .underlay{
+  background-image: url("../media/highlights/twistytongue.png");
+  background-size: 500px 500px;
+  background-position: 90% -20%;
+}
+
+.allturtles .underlay{
+  background-image: url("../media/highlights/allturtles.png");
+  background-size: 500px 500px;
+  background-position: 105% 40%;
+}
+
+.onemedical .underlay{
+  background-image: url("../media/highlights/onemedical.png");
+  background-size: 500px 500px;
+  background-position: 30% 65%;
+}
+
+.rise .underlay{
+  background-image: url("../media/highlights/rise.png");
+  background-size: 500px 500px;
+  background-position: 60% 125%;
 }
 
 @font-face {
