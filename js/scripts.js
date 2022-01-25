@@ -5,7 +5,7 @@ const data = {
     {name: "Culture Fit", className:"culturefit", mode: "light"},
     {name: "Creative Mornings", className:"creativemornings", mode: "light"},
     {name: "Google #MyDomain", className:"google", mode: ""},
-    {name: "Apple M1", className:"apple", mode: "light"},
+    /*{name: "Apple M1", className:"apple", mode: "light"},*/
     {name: "Twisty Tongue", className:"twistytongue", mode: ""},
     {name: "All Turtles Studio", className:"allturtles", mode: ""},
     {name: "One Medical", className:"onemedical", mode: ""},
