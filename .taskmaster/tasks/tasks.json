@@ -1,0 +1,49 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Archive current website",
+        "description": "Create a _archive directory and move all existing site files and directories (index.html, css/, js/, fonts/, media/, uplds/) into it to preserve the current site.",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "subtasks": [],
+        "updatedAt": "2026-02-01T22:29:14.610Z"
+      },
+      {
+        "id": "2",
+        "title": "Create new placeholder index.html",
+        "description": "Build a minimal HTML page using IBM Plex Mono font (loaded from Google Fonts) that displays 'New Website - Spring 2026' perfectly centered both horizontally and vertically. Use the same font styling as the original site header (uppercase, letter-spacing: 3px).",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "subtasks": [],
+        "updatedAt": "2026-02-01T22:29:16.590Z"
+      },
+      {
+        "id": "3",
+        "title": "Add rotating background color animation",
+        "description": "Implement an infinite CSS/JS animation loop that cycles through three background colors from the original site: #403AE9 (mmhmm blue), #DC6872 (mmhmm OOO pink), #403D5A (Twisty Tongue dark purple). Each color fades to the next over 10 seconds, then the next transition begins 5 seconds later. The cycle repeats infinitely.",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [
+          "2"
+        ],
+        "subtasks": [],
+        "updatedAt": "2026-02-01T22:29:18.556Z"
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "lastModified": "2026-02-01T22:29:18.557Z",
+      "taskCount": 3,
+      "completedCount": 3,
+      "tags": [
+        "master"
+      ]
+    }
+  }
+}

@@ -1,83 +1,103 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dairien Boyd</title>
-  <meta name="description" content="Dairien Boyd designs and builds products at @mmhmmapp">
-  <meta name="author" content="Dairien Boyd">
-
-  <meta property="og:title" content="Dairien Boyd designs and builds products at @mmhmmapp">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.dairien.com/">
-  <meta property="og:description" content="Dairien Boyd designs and builds products at @mmhmmapp">
-  <!--meta property="og:image" content="image.png"-->
-
-  <!--link rel="icon" href="/favicon.ico"-->
-  <!--link rel="icon" href="/favicon.svg" type="image/svg+xml"-->
-  <!--link rel="apple-touch-icon" href="/apple-touch-icon.png"-->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/styles.css?v=1.1">
-  <link href='https://fonts.googleapis.com/css?family=IBM Plex Mono' rel='stylesheet'>
-
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "IBM Plex Mono", monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      background-color: #403AE9;
+      transition: background-color 10s ease;
+    }
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+    #noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.15;
+      z-index: 0;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <header class="col2">
-      <div>Dairien Boyd</div>
-      <div class="right">2021</div>
-    </header>
-    <section>
-      <div>
-        <h1>
-          Thanks for visiting.<br/>
-          I build products <span>@</span><a href="http://mmhmm.app/">mmhmm</a>.
-        </h1>
-      </div>
-    </section>
-    <section><hr/></section>
-    <section class="col3 highlights">
-        <h2>Recent highlights</h2>
-        <ul>
-          <li><a href="#">mmhmm OOO</a></li>
-          <li><a href="#">mmhmm</a></li>
-          <li><a href="#">Culture Fit Podcast</a></li>
-          <li><a href="#">Creative Mornings</a></li>
-          <li><a href="#">Google #MyDomain</a></li>
-        </ul>
-        <ul>
-          <li><a href="#">Twisty Tongue</a></li>
-          <li><a href="#">All Turtles</a></li>
-          <li><a href="#">One Medical</a></li>
-          <li><a href="#">Rise</a></li>
-          <!--li><a href="#">Apple M1</a></li-->
-        </ul>
-    </section>
-    <section><hr/></section>
-    <section class="col3 links">
-        <ul>
-          <li><a href="https://linkedin.com/in/dairien" target="_blank">LinkedIn</a></li>
-          <li>@<a href="https://twitter.com/dairien" target="_blank">dairien</a></li>
-          <li><a href="mailto:contact@dairien.com">Email</a></li>
-        </ul>
-        <ul>
-          <li>&nbsp;</li>
-          <!--li><a href="#">Read.CV</a></li>
-          <li><a href="https://dairien.medium.com/" target="_blank">Medium</a></li>
-          <li><a href="https://github.com/dairien" target="_blank">Github</a></li>
-          <li><a href="https://instagram.com/dairien" target="_blank">Instagram</a></li>
-          <li><a href="#" target="_blank">Unsplash</a></li-->
-        </ul>
-        <p class="right"><span>&#9786; Good vibes preferred.</span></p>
-    </section>
+  <canvas id="noise"></canvas>
+  <div style="text-align:center">
+    <div style="font-size:8rem;line-height:1;margin-bottom:1rem">🐝</div>
+    <h1>New Website &mdash; Spring 2026</h1>
   </div>
-  <canvas id="noise" class="noise"></canvas>
-  <canvas id="underlay" class="underlay"></canvas>
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/scripts.js"></script>
+  <script>
+    var colors = ["#403AE9", "#DC6872", "#403D5A"];
+    var i = 0;
+    function cycle() {
+      i = (i + 1) % colors.length;
+      document.body.style.backgroundColor = colors[i];
+    }
+    setTimeout(function() {
+      cycle();
+      setInterval(cycle, 15000);
+    }, 5000);
+
+    // Noise overlay
+    (function() {
+      var canvas = document.getElementById('noise');
+      var ctx = canvas.getContext('2d');
+      var noiseData = [];
+      var frame = 0;
+      var loopTimeout;
+
+      function createNoise(w, h) {
+        var idata = ctx.createImageData(w, h);
+        var buffer32 = new Uint32Array(idata.data.buffer);
+        for (var j = 0; j < buffer32.length; j++) {
+          if (Math.random() < 0.8) buffer32[j] = 0xff000000;
+        }
+        noiseData.push(idata);
+      }
+
+      function paintNoise() {
+        frame = (frame + 1) % 10;
+        ctx.putImageData(noiseData[frame], 0, 0);
+      }
+
+      function loop() {
+        paintNoise();
+        loopTimeout = setTimeout(function() {
+          requestAnimationFrame(loop);
+        }, 5);
+      }
+
+      function setup() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        noiseData = [];
+        for (var j = 0; j < 10; j++) createNoise(canvas.width, canvas.height);
+        loop();
+      }
+
+      setup();
+      window.addEventListener('resize', function() {
+        clearTimeout(loopTimeout);
+        setup();
+      });
+    })();
+  </script>
 </body>
 </html>
