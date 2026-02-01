@@ -45,6 +45,10 @@
   </div>
   <script>
     var colors = ["#403AE9", "#DC6872", "#403D5A"];
+    for (var j = colors.length - 1; j > 0; j--) {
+      var k = Math.floor(Math.random() * (j + 1));
+      var tmp = colors[j]; colors[j] = colors[k]; colors[k] = tmp;
+    }
     var i = 0;
     function cycle() {
       i = (i + 1) % colors.length;
