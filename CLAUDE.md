@@ -6,6 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio website for Dairien Boyd. Static HTML/CSS/JS site with no build system, no package manager, and no backend.
 
+## Hosting & Domain
+
+- **Domain**: `dairien.com` registered with name.com (created 2021-12-07)
+- **DNS**: Cloudflare — nameservers `ainsley.ns.cloudflare.com` and `ezra.ns.cloudflare.com`
+- **Proxy/CDN**: Cloudflare (free plan) — handles DNS, SSL/TLS, caching
+- **Hosting**: Cloudflare Pages (free plan) — connected to GitHub repo `dairien/dairien_com`, auto-deploys on push to `master`
+- **Note**: Cloudflare Pages does not serve directories starting with `_` (known bug). Avoid underscore-prefixed directory names.
+
 ## Development
 
 Serve locally with any static HTTP server:
