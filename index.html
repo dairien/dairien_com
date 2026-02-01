@@ -5,103 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dairien Boyd</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: "IBM Plex Mono", monospace;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: #fff;
-      background-color: #403AE9;
-      transition: background-color 10s ease;
-    }
-    h1 {
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 1rem;
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
-    }
-    #noise {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.15;
-      z-index: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <canvas id="noise"></canvas>
-  <div style="text-align:center">
-    <div style="font-size:8rem;line-height:1;margin-bottom:1rem">🐝</div>
+  <div class="hero">
+    <div class="hero-emoji">🐝</div>
     <h1>New Website &mdash; Spring 2026</h1>
   </div>
-  <script>
-    var colors = ["#403AE9", "#DC6872", "#403D5A"];
-    for (var j = colors.length - 1; j > 0; j--) {
-      var k = Math.floor(Math.random() * (j + 1));
-      var tmp = colors[j]; colors[j] = colors[k]; colors[k] = tmp;
-    }
-    var i = 0;
-    function cycle() {
-      i = (i + 1) % colors.length;
-      document.body.style.backgroundColor = colors[i];
-    }
-    setTimeout(function() {
-      cycle();
-      setInterval(cycle, 15000);
-    }, 5000);
-
-    // Noise overlay
-    (function() {
-      var canvas = document.getElementById('noise');
-      var ctx = canvas.getContext('2d');
-      var noiseData = [];
-      var frame = 0;
-      var loopTimeout;
-
-      function createNoise(w, h) {
-        var idata = ctx.createImageData(w, h);
-        var buffer32 = new Uint32Array(idata.data.buffer);
-        for (var j = 0; j < buffer32.length; j++) {
-          if (Math.random() < 0.8) buffer32[j] = 0xff000000;
-        }
-        noiseData.push(idata);
-      }
-
-      function paintNoise() {
-        frame = (frame + 1) % 10;
-        ctx.putImageData(noiseData[frame], 0, 0);
-      }
-
-      function loop() {
-        paintNoise();
-        loopTimeout = setTimeout(function() {
-          requestAnimationFrame(loop);
-        }, 5);
-      }
-
-      function setup() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        noiseData = [];
-        for (var j = 0; j < 10; j++) createNoise(canvas.width, canvas.height);
-        loop();
-      }
-
-      setup();
-      window.addEventListener('resize', function() {
-        clearTimeout(loopTimeout);
-        setup();
-      });
-    })();
-  </script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
